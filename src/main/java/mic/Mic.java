@@ -107,14 +107,13 @@ public class Mic extends JFrame {
   private Properties props, defprops = new Properties();
   // help system
 
-  private String helpSetURL = "help/Mic1.hs";
+  private String helpSetURL = "/Mic1.hs";
   private HelpSet hs = null;
   private HelpBroker hb = null;
 
   public Mic(String micFile) {
     super(title);
     setResizable(false);
-
     titleImage = new ImageIcon(getClass().getResource("/mictitle.gif"));
     setIconImage(titleImage.getImage());
     enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -163,9 +162,9 @@ public class Mic extends JFrame {
         menuAbout.add(actionList[i]);
       if (i == 1)
         menuFile.addSeparator();
-      /*    if (i == HELPON) {
-            helpMenuItem = menuAbout.getItem(menuAbout.getItemCount()-1);
-          }*/
+      if (i == HELPON) {
+        helpMenuItem = menuAbout.getItem(menuAbout.getItemCount() - 1);
+      }
     }
     menuBar1.add(menuFile);
     menuBar1.add(menuEdit);
@@ -178,8 +177,8 @@ public class Mic extends JFrame {
     getDefaultMacFile(defaultMacFile);
     setSize(new Dimension(WID[reslvl], HT[reslvl]));
     micprefs.loadDefaults(props);
-    // initHelp();
-    // setHelp();
+    initHelp();
+    setHelp();
     setTitle();
   }
 
@@ -351,14 +350,15 @@ public class Mic extends JFrame {
   }
 
   private void initHelp() {
-    /*ClassLoader loader = this.getClass().getClassLoader();
+    ClassLoader loader = this.getClass().getClassLoader();
     URL url;
     try {
       url = getClass().getResource(helpSetURL);
-      if (url == null) throw new Exception("URL null");
+      if (url == null)
+        throw new Exception("URL null");
       hs = new HelpSet(loader, url);
     } catch (Exception ee) {
-      System.out.println ("Trouble in createHelpSet;");
+      System.out.println("Trouble in createHelpSet;");
       ee.printStackTrace();
       return;
     }
@@ -368,7 +368,7 @@ public class Mic extends JFrame {
       hb.setSize(new Dimension(HELPWID[reslvl], HELPHT[reslvl]));
     } catch (javax.help.UnsupportedOperationException ex) {
       System.out.println(ex);
-    }*/
+    }
   }
 
   private void helpAbout_actionPerformed(ActionEvent e) {
